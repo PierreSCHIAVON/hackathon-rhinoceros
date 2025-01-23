@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASS}@db:5432/${DATABASE}
+      DATABASE_URL: postgresql://${DATABASE_USER}:${DATABASE_PASS}@db:5432/${DATABASE}
 
   frontend:
     build:
@@ -31,16 +31,14 @@ services:
 
   db:
     image: postgres:15
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASS}
       POSTGRES_DB: ${DATABASE}
-    env_file:
-      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 volumes:
   db_data:
