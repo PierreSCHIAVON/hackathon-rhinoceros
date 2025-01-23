@@ -4,20 +4,37 @@
   "description": "This is the back-end of the project. It is a RESTful API that provides the front-end with the necessary data to display the information to the user. It is built using Node.js, Express.js, and MongoDB.",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint \"src/**/*.{js,ts}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\""
+    "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\"",
+    "build": "tsc",
+    "start": "node dist/src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.9",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
     "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.21.0"
   }
 }
