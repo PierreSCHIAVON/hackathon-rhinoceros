@@ -10,8 +10,10 @@ services:
       - /app/node_modules
     depends_on:
       - db
+    env_file:
+      - .env
     environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/${DATABASE}
+      DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASS}@db:5432/${DATABASE}
 
   frontend:
     build:
@@ -24,6 +26,8 @@ services:
       - /app/node_modules
     depends_on:
       - backend
+    env_file:
+      - .env
 
   db:
     image: postgres:15
@@ -35,6 +39,8 @@ services:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASS}
       POSTGRES_DB: ${DATABASE}
+    env_file:
+      - .env
 
 volumes:
   db_data:
