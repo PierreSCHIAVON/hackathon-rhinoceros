@@ -8,18 +8,14 @@ const server = createServer(app);
 const io = new Server(server);
 
 app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'index_chat.html'));
+  res.sendFile(join(process.cwd(), '..', 'front', 'index_chat.html'));
 });
 
 io.on('connection', (socket) => {
   console.log('user connected');
 
-  socket.on('chat', (msg: string) => {
-    io.emit('chat', msg);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on('chat', (data: { username: string, message: string }) => {
+    io.emit('chat', `${data.username}: ${data.message}`);
   });
 });
 
