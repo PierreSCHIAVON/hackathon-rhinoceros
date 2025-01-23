@@ -1,25 +1,19 @@
 DOCKER_COMPOSE = docker compose
-DOCKER_COMPOSE_FLAGS = -f docker-compose.yml
-
 
 build:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) build
+	$(DOCKER_COMPOSE) build
 
 start:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) up -d
+	$(DOCKER_COMPOSE) up -d
 
 stop:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) down
+	$(DOCKER_COMPOSE) down
 
 restart:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) down && $(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) up -d
+	$(DOCKER_COMPOSE) down && $(DOCKER_COMPOSE) up -d
 
 logs:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) logs -f
-
-logs-app:
-	@read -p "Enter service name (frontend, backend, db): " service; \
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FLAGS) logs -f hackathon-rhinoceros-$$service-1
+	$(DOCKER_COMPOSE) logs -f
 
 shell:
 	@read -p "Enter service name (frontend, backend, db): " service; \
