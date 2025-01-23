@@ -69,8 +69,6 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    import {io} from "socket.io-client";
-
     const socket = io();
 
     const form = document.getElementById('form');
@@ -80,7 +78,6 @@
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         if (input.value) {
-            console.log('input.value', input.value);
             socket.emit('chat', input.value);
             input.value = '';
         }
