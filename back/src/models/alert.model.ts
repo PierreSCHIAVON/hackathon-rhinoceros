@@ -50,11 +50,10 @@ AlertModel.init(
     }
   },
   {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: 'AlertModel', // We need to choose the model name
+    sequelize,
+    modelName: 'AlertModel',
   },
 );
 
-// the defined model is the class itself
-console.log(AlertModel === sequelize.models.AlertModel); // true
+
+console.log(AlertModel === sequelize.models.AlertModel);
