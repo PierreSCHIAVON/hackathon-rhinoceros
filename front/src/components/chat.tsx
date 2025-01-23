@@ -75,7 +75,11 @@ const Chat = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Input label="Type a message" className="flex-grow" />
+          <Input
+            variant="standard"
+            label="Type a message"
+            className="flex-grow"
+          />
           <Button
             color="green"
             onClick={handleSendMessage}
