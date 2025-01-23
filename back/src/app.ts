@@ -1,9 +1,30 @@
 import express from 'express';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import { join } from 'path';
 
 const app = express();
+const server = createServer(app);
+const io = new Server(server);
+
+console.log(join(__dirname, 'index.html'));
 
 app.get('/', (req, res) => {
-    res.send('Successful response.');
+    res.sendFile(join(__dirname, 'index.html'));
 });
 
-app.listen(3000, () => console.log('Example app is listening on port 3000.'));
+io.on('connection', (socket) => {
+    console.log('user connected');
+
+    socket.on('chat', (msg: string) => {
+        io.emit('chat', msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
+server.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
