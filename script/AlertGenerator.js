@@ -29,31 +29,31 @@ function generateAlert() {
 
   console.log(JSON.stringify(alertData));
 
-  // fetch("/alert/new", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(alertData),
-  // })
-  //   .then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`);
-  //     }
-  //     return response.json();
-  //   })
-  //   .then((data) => {
-  //     console.log("Alert sent:", data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error sending alert:", error);
-  //   });
+  fetch("http://localhost:3000/alerts/new", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(alertData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Script alert sent:", data);
+    })
+    .catch((error) => {
+      console.error("Error sending alert:", error);
+    });
 }
 
 function startAlertGenerator() {
   console.log("Starting alert generator...");
   (function loop() {
-    const delay = getRandomInt(0.5 * 60 * 1000, 1 * 60 * 1000);
+    const delay = getRandomInt(0.1 * 60 * 1000, 0.2 * 60 * 1000);
     setTimeout(() => {
       generateAlert();
       loop();
