@@ -4,8 +4,11 @@
   "description": "This is the back-end of the project. It is a RESTful API that provides the front-end with the necessary data to display the information to the user. It is built using Node.js, Express.js, and MongoDB.",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\""
+    "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\"",
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.9",
     "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
