@@ -31,20 +31,8 @@ const Chat = () => {
   return (
     <div className="flex h-screen p-4 bg-gray-100">
       {/* Sidebar */}
-      <Card
-        className="w-1/4 p-4 mr-4 bg-white shadow-lg"
-        placeholder=""
-        onPointerEnterCapture={() => {}}
-        onPointerLeaveCapture={() => {}}
-      >
-        <Button
-          color="green"
-          className="w-full mb-4"
-          placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-          onClick={() => {}}
-        >
+      <Card className="w-1/4 p-4 mr-4 bg-white shadow-lg">
+        <Button color="green" className="w-full mb-4" onClick={() => {}}>
           Create New Room
         </Button>
         <div className="space-y-2">
@@ -63,12 +51,7 @@ const Chat = () => {
       </Card>
 
       {/* Chat Area */}
-      <Card
-        className="flex-1 flex flex-col p-4 bg-white shadow-lg"
-        placeholder=""
-        onPointerEnterCapture={() => {}}
-        onPointerLeaveCapture={() => {}}
-      >
+      <Card className="flex-1 flex flex-col p-4 bg-white shadow-lg">
         <div className="flex-1 overflow-y-auto mb-4">
           {messages.map((message, index) => (
             <div
@@ -94,20 +77,12 @@ const Chat = () => {
         <div className="flex items-center space-x-2">
           <Input
             label="Type a message"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            className="flex-1"
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
-            crossOrigin=""
+            className="flex-grow" // Permet à l'input de prendre tout l'espace restant
           />
           <Button
             color="green"
             onClick={handleSendMessage}
-            className="w-full mb-4"
-            placeholder=""
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
+            className="flex-shrink-0" // Fixe la taille du bouton
           >
             Send
           </Button>
