@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\"",
     "build": "tsc",
-    "start": "node dist/src/app.js"
+    "start": "node dist/src/app.js",
+    "migrate": "sequelize-cli db:migrate"
   },
   "keywords": [],
   "author": "",

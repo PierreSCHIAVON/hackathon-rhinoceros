@@ -2,14 +2,12 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { join } from 'path';
-import AlertRouter from './routes/AlertRouter';
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
 
 app.use(express.json());
-app.use('/', AlertRouter);
 
 app.get('/chat', (req, res) => {
   res.sendFile(join(process.cwd(), '..', 'front', 'index_chat.html'));
