@@ -1,6 +1,5 @@
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 const sequelize = new Sequelize('sqlite::memory:');
-const db = require('');
 
 export class AlertModel extends Model {
     public id!: string;
