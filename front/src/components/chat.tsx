@@ -75,14 +75,11 @@ const Chat = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Input
-            label="Type a message"
-            className="flex-grow" // Permet à l'input de prendre tout l'espace restant
-          />
+          <Input label="Type a message" className="flex-grow" />
           <Button
             color="green"
             onClick={handleSendMessage}
-            className="flex-shrink-0" // Fixe la taille du bouton
+            className="flex-shrink-0"
           >
             Send
           </Button>
