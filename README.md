@@ -91,3 +91,9 @@ Assurez-vous de configurer vos fichiers `.env` dans chaque service si nécessair
 - Le `README.md` documente les commandes disponibles et explique l'architecture du projet.
 
 Vous pouvez ajuster ces fichiers selon vos besoins ou ajouter des options supplémentaires.
+
+## Kanban
+
+https://github.com/users/PierreSCHIAVON/projects/1/views/1
+
+Sur ce lien vous trouverez le kanban qui a été utilisé lors du projet
