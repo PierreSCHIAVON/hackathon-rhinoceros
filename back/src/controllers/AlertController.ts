@@ -1,5 +1,6 @@
-import { AlertService } from '../services/AlertService';
 import { Request, Response } from 'express';
+import { alertNamespace } from '../app';
+import { AlertService } from '../services/AlertService';
 
 export class AlertController {
   constructor(private alertService: AlertService) {}
@@ -16,8 +17,15 @@ export class AlertController {
   }
 
   async createAlert(req: Request, res: Response) {
-    const alert = await this.alertService.create(req.body);
-    res.status(201).json(alert);
+    console.log('Creating alert...');
+    const alertData = req.body;
+
+    // Emit alert to WebSocket clients
+    alertNamespace.emit('new_alert', alertData);
+    console.log('Alert emitted to WebSocket namespace /alertSocket');
+
+    // Send response
+    res.status(201).json({ message: 'Alert created', alert: alertData });
   }
 
   async updateAlert(req: Request, res: Response) {
