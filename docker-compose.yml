@@ -1,20 +1,4 @@
 services:
-  backend:
-    build:
-      context: ./back
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./back:/app
-      - /app/node_modules
-    depends_on:
-      - db
-    env_file:
-      - .env
-    environment:
-      DATABASE_URL: postgresql://${DATABASE_USER}:${DATABASE_PASS}@db:5432/${DATABASE}
-
   frontend:
     build:
       context: ./front
@@ -24,8 +8,6 @@ services:
     volumes:
       - ./front:/app
       - /app/node_modules
-    depends_on:
-      - backend
     env_file:
       - .env
 
