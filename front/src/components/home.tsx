@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { io } from 'socket.io-client';
+import  Chat   from './chat'
 
 const Alerts: React.FC = () => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const Alerts: React.FC = () => {
   return (
     <div>
       <Toaster />
-      <h1>Mainpage works!</h1>
+      <Chat/>
     </div>
   );
 };
