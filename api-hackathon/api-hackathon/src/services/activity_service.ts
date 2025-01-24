@@ -3,7 +3,7 @@ import { Zone } from '../models/zone_model';
 
 export const activityService = {
   async createActivity(data: {
-    name: string;
+    title: string;
     description: string;
     type: string;
     zoneId: number;
@@ -21,7 +21,7 @@ export const activityService = {
 
   async updateActivity(
     id: number,
-    updates: Partial<{ name: string; description: string; type: string }>,
+    updates: Partial<{ title: string; description: string; type: string }>,
   ) {
     const activity = await Activity.findByPk(id);
     if (activity) {

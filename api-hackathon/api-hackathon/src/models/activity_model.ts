@@ -4,7 +4,7 @@ import { Zone } from './zone_model';
 
 export class Activity extends Model {
   public id!: number;
-  public name!: string;
+  public title!: string;
   public description!: string;
   public type!: string;
   public zoneId!: number;
@@ -17,7 +17,7 @@ Activity.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
