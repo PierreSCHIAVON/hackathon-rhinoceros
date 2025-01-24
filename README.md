@@ -105,3 +105,7 @@ Lors de ce projet, nous avons utilisé la stratégie suivante :
 develop est la copie de main, chaque branche feature doit être tirée de develop et mergée dans develop une fois terminée.
 
 une branche feature se présente sous cette forme : feature/nomdelafeature
+
+## Script 
+
+Commande pour lancer le script : node script/AlertGenerator.js
