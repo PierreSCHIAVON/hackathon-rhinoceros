@@ -109,6 +109,15 @@
       }
     });
 
+    socket.on('chat history', (history) => {
+      messages.innerHTML = '';
+      history.forEach(msg => {
+        const item = document.createElement('li');
+        item.textContent = `${msg.username}: ${msg.message}`;
+        messages.appendChild(item);
+      });
+    });
+
     socket.on('chat', (msg) => {
       const item = document.createElement('li');
       item.textContent = msg;
