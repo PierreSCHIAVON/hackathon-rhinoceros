@@ -29,7 +29,7 @@ function generateAlert() {
 
   console.log(JSON.stringify(alertData));
 
-  fetch("http://localhost:3000/alerts/new", {
+  fetch("http://localhost:3000/api/notify", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

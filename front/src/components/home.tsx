@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
-import { io } from 'socket.io-client';
-import  Chat   from './chat'
+import React, { useEffect } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { io } from "socket.io-client";
+import MapComponent from "./MapComponent";
 
 const Alerts: React.FC = () => {
   useEffect(() => {
@@ -17,10 +17,12 @@ const Alerts: React.FC = () => {
     };
   }, []);
 
+
   return (
-    <div>
+    <div className="h-full w-full">
       <Toaster />
-      <Chat/>
+
+      <MapComponent />
     </div>
   );
 };

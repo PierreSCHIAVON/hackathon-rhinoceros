@@ -1,18 +1,18 @@
-import express, { NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import dotenv from 'dotenv';
-import sequelize, { syncDatabase } from './config/database';
+import express, { NextFunction, Request, Response } from 'express';
+import { syncDatabase } from './config/database';
 
-import zoneRoutes from './routes/zone_route';
+import fs from 'fs';
+import { createServer } from 'http';
+import { join } from 'path';
+import { Server } from 'socket.io';
+import activityRoutes from './routes/activity_route';
 import alertRoutes from './routes/alert_route';
 import alertTypeRoutes from './routes/alertType_route';
 import messageRoutes from './routes/message_route';
-import activityRoutes from './routes/activity_route';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
-import { join } from 'path';
-import fs from 'fs';
+import notifyRoutes from './routes/notify_route';
+import zoneRoutes from './routes/zone_route';
 
 dotenv.config();
 
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/zones', zoneRoutes);
+app.use('/api/notify', notifyRoutes);
 app.use('/api/alerts', alertRoutes);
 app.use('/api/alert-types', alertTypeRoutes);
 app.use('/api/messages', messageRoutes);

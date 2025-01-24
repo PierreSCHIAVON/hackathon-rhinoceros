@@ -10,18 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.alertController = void 0;
+const app_1 = require("../app");
 const alert_service_1 = require("../services/alert_service");
 exports.alertController = {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('Creating alert...', req.body); // Affiche les données reçues
             try {
-                const alert = yield alert_service_1.alertService.createAlert(req.body);
-                res.status(201).json(alert);
+                app_1.alertNamespace.emit('new_alert', "test");
+                console.log('Alert emitted to WebSocket namespace /alertSocket');
+                res.status(201).json({ message: 'Alert created', alert: req.body });
             }
             catch (error) {
-                res
-                    .status(500)
-                    .json({ error: 'Erreur lors de la création de l’alerte.' });
+                console.error(error);
+                res.status(500).json({ error: 'Erreur lors de la création de l’alerte.' });
             }
         });
     },
