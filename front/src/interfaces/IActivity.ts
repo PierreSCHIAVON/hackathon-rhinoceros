@@ -5,5 +5,5 @@ export default interface IActivity {
   title: string,
   description: string,
   type: string,
-  zone: IZone,
+  Zone: IZone,
 }
