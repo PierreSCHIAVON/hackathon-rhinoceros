@@ -1,4 +1,20 @@
 services:
+  backend:
+    build:
+      context: ./api-hackathon/api-hackathon/src
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+
   frontend:
     build:
       context: ./front
@@ -14,13 +30,19 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASS}
-      POSTGRES_DB: ${DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
     ports:
       - "5432:5432"
 
 volumes:
   db_data:
+
+networks:
+  app-network:
+    driver: bridge
