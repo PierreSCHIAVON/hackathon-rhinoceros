@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IActivity from '../interfaces/IActivity';
 import ActivityCard from './activityCard';
 import { Typography } from '@material-tailwind/react';
@@ -10,13 +10,13 @@ const Activities: React.FC = () => {
 
   const [activities, setActivities] = useState<IActivity[]>([]);
   
-  axios.get(activitiesEndpoint)
-    .then((res: AxiosResponse<IActivity[]>) => {      
-      setActivities(res.data);
-    })
-    .catch(() => toast.error('Une erreur est survenue lors de la récupération des données'));
-
-  console.log(activities)
+  useEffect(() => {
+    axios.get(activitiesEndpoint)
+      .then((res: AxiosResponse<IActivity[]>) => {      
+        setActivities(res.data);
+      })
+      .catch(() => toast.error('Une erreur est survenue lors de la récupération des données'));
+  }, []);
 
   return (
     <div className='p-4 bg-gray-100'>
