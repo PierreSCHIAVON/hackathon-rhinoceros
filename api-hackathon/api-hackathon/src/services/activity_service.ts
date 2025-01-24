@@ -1,4 +1,5 @@
 import { Activity } from '../models/activity_model';
+import { Zone } from '../models/zone_model';
 
 export const activityService = {
   async createActivity(data: {
@@ -11,7 +12,7 @@ export const activityService = {
   },
 
   async getAllActivities() {
-    return await Activity.findAll();
+    return await Activity.findAll({include: [{ model: Zone, attributes: ['id', 'name'] }]});
   },
 
   async getActivityById(id: number) {
