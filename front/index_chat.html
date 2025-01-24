@@ -75,7 +75,6 @@
     </form>
   </div>
 
-  <script src="/socket.io/socket.io.js"></script>
   <script>
     const socket = io();
 
@@ -107,6 +106,15 @@
         socket.emit('chat', { username, message: input.value });
         input.value = '';
       }
+    });
+
+    socket.on('chat history', (history) => {
+      messages.innerHTML = '';
+      history.forEach(msg => {
+        const item = document.createElement('li');
+        item.textContent = `${msg.username}: ${msg.message}`;
+        messages.appendChild(item);
+      });
     });
 
     socket.on('chat', (msg) => {

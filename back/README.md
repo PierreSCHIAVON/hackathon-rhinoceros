@@ -32,4 +32,3 @@ POSTGRES_DB=postgres
 10. You can also run `npm run test` to run the tests.
 
 ## Usage
-
