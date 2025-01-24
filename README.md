@@ -97,3 +97,11 @@ Vous pouvez ajuster ces fichiers selon vos besoins ou ajouter des options suppl�
 https://github.com/users/PierreSCHIAVON/projects/1/views/1
 
 Sur ce lien vous trouverez le kanban qui a été utilisé lors du projet
+
+## Git-flow
+
+Lors de ce projet, nous avons utilisé la stratégie suivante :
+
+develop est la copie de main, chaque branche feature doit être tirée de develop et mergée dans develop une fois terminée.
+
+une branche feature se présente sous cette forme : feature/nomdelafeature
