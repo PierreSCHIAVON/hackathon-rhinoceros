@@ -12,21 +12,25 @@ const Activities: React.FC = () => {
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [activitiesZonesList, setActivitiesZonesList] = useState<IZone[]>([]);
   const [currentZoneFilter, setCurrentZoneFilter] = useState<string | undefined>(undefined);
-  
+
   useEffect(() => {
     axios.get(activitiesEndpoint)
-      .then((res: AxiosResponse<IActivity[]>) => {      
-        setActivities(res.data);
+      .then((res: AxiosResponse<IActivity[]>) => {
+        const activitiesData = Array.isArray(res.data) ? res.data : [];
+        setActivities(activitiesData);
 
         const zones: IZone[] = [];
-        for (const activity of res.data) {
+        for (const activity of activitiesData) {
           if (!zones.find(z => z.id === activity.Zone.id)) {
             zones.push(activity.Zone);
           }
         }
         setActivitiesZonesList(zones);
       })
-      .catch(() => toast.error('Une erreur est survenue lors de la récupération des données'));
+      .catch((error) => {
+        console.error('Error fetching activities:', error);
+        toast.error('Une erreur est survenue lors de la récupération des données');
+      });
   }, []);
 
   const updateFilter = (value: string | undefined) => {

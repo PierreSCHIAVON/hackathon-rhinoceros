@@ -64,6 +64,15 @@ const saveChatHistory = (messages: ChatMessage[]) => {
   fs.writeFileSync(CHAT_HISTORY_FILE, JSON.stringify(messages));
 };
 
+export const alertNamespace = io.of('/alertSocket');
+alertNamespace.on('connection', (socket) => {
+  console.log('Client connected to /alertSocket namespace');
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected from /alertSocket namespace');
+  });
+});
+
 io.on('connection', (socket) => {
   const chatHistory = loadChatHistory();
   socket.emit('chat history', chatHistory);
@@ -80,6 +89,16 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
+const startServer = async () => {
+  try {
+    await syncDatabase();
+    const PORT: number = parseInt(process.env.PORT || '3000', 10);
+    server.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}.`);
+    });
+  } catch (error) {
+    console.error('Erreur lors du démarrage du serveur :', error);
+  }
+};
+
+startServer();
