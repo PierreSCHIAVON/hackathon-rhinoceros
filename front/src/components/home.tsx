@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
-import { io } from 'socket.io-client';
+import React, { useEffect } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { io } from "socket.io-client";
+import MapComponent from "./MapComponent";
 
 const Alerts: React.FC = () => {
   useEffect(() => {
-    const socket = io('http://localhost:3000/alertSocket');
+    const socket = io("http://localhost:3000/alertSocket");
     console.log(socket);
 
-    socket.on('new_alert', (alert: { type: string; zone: number }) => {
+    socket.on("new_alert", (alert: { type: string; zone: number }) => {
       toast.error(`Nouvelle alerte : ${alert.type} dans la zone ${alert.zone}`);
     });
 
@@ -17,9 +18,10 @@ const Alerts: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="h-full w-full">
       <Toaster />
-      <h1>Mainpage works!</h1>
+
+      <MapComponent />
     </div>
   );
 };
