@@ -1,19 +1,24 @@
 import { Request, Response } from 'express';
+import { alertNamespace } from '../app';
 import { alertService } from '../services/alert_service';
 
 export const alertController = {
   async create(req: Request, res: Response) {
+    console.log('Creating alert...', req.body);  // Affiche les données reçues
+
     try {
-      const alert = await alertService.createAlert(req.body);
-      res.status(201).json(alert);
+      alertNamespace.emit('new_alert', "test");
+      console.log('Alert emitted to WebSocket namespace /alertSocket');
+
+      res.status(201).json({ message: 'Alert created', alert: req.body });
     } catch (error) {
-      res
-        .status(500)
-        .json({ error: 'Erreur lors de la création de l’alerte.' });
+      console.error(error);
+      res.status(500).json({ error: 'Erreur lors de la création de l’alerte.' });
     }
   },
 
   async getAll(req: Request, res: Response) {
+
     try {
       const alerts = await alertService.getAllAlerts();
       res.status(200).json(alerts);

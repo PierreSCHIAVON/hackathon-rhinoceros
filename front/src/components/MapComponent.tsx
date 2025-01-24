@@ -39,10 +39,6 @@ export default function MapComponent() {
 
   return (
     <div>
-      <div style={{ marginBottom: "10px", fontSize: "18px", fontWeight: "bold" }}>
-        Zone AActuelle: {userZone ? userZone : "Aucune zone détectée"}
-      </div>
-
       <MapContainer
         center={[43.6043, 1.4437]}
         zoom={12}

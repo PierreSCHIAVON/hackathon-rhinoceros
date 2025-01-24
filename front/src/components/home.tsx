@@ -5,10 +5,10 @@ import MapComponent from "./MapComponent";
 
 const Alerts: React.FC = () => {
   useEffect(() => {
-    const socket = io("http://localhost:3000/alertSocket");
+    const socket = io('http://localhost:3000/alertSocket');
     console.log(socket);
 
-    socket.on("new_alert", (alert: { type: string; zone: number }) => {
+    socket.on('new_alert', (alert: { type: string; zone: number }) => {
       toast.error(`Nouvelle alerte : ${alert.type} dans la zone ${alert.zone}`);
     });
 
@@ -16,6 +16,7 @@ const Alerts: React.FC = () => {
       socket.disconnect();
     };
   }, []);
+
 
   return (
     <div className="h-full w-full">
