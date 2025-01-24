@@ -17,7 +17,7 @@ const ActivityCard: React.FC<{ activity: IActivity }> = ({ activity }) => {
         <Typography variant="h5" color="blue-gray" className="mb-2">
           { activity.title }
         </Typography>
-        <Typography variant='small'>Lieu : { activity.zone.name }</Typography>
+        <Typography variant='small'>Lieu : { activity.Zone.name }</Typography>
         <Typography variant='paragraph'>{ activity.description }</Typography>
       </CardBody>
       {/* <CardFooter className="pt-0">
