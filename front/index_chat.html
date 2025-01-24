@@ -62,34 +62,59 @@
     </style>
   </head>
   <body>
+  <div id="login" style="text-align: center; margin-top: 20px;">
+    <input id="username" placeholder="Enter username" />
+    <button onclick="setUsername()">Start Chat</button>
+  </div>
+
+  <div id="chat" style="display: none;">
     <ul id="messages"></ul>
     <form id="form" action="">
-      <label for="input">test</label>
-      <input id="input" autocomplete="off" /><button>Send</button>
+      <input id="input" autocomplete="off" />
+      <button>Send</button>
     </form>
+  </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io();
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
 
-      const form = document.getElementById('form');
-      const input = document.getElementById('input');
-      const messages = document.getElementById('messages');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+    const messages = document.getElementById('messages');
+    let username;
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit('chat', input.value);
-          input.value = '';
-        }
-      });
+    function setUsername() {
+      const usernameInput = document.getElementById('username');
+      username = usernameInput.value;
 
-      socket.on('chat', (msg) => {
-        const item = document.createElement('li');
-        item.textContent = msg;
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
-      });
-    </script>
+      if (username) {
+        localStorage.setItem('chatUsername', username);
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('chat').style.display = 'block';
+      }
+    }
+
+    if (localStorage.getItem('chatUsername')) {
+      username = localStorage.getItem('chatUsername');
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('chat').style.display = 'block';
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value && username) {
+        socket.emit('chat', { username, message: input.value });
+        input.value = '';
+      }
+    });
+
+    socket.on('chat', (msg) => {
+      const item = document.createElement('li');
+      item.textContent = msg;
+      messages.appendChild(item);
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+  </script>
   </body>
 </html>

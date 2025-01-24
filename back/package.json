@@ -9,13 +9,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\"",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"
   },
