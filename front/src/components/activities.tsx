@@ -49,9 +49,9 @@ const Activities: React.FC = () => {
   ];
 
   return (
-    <div className='p-4'>
+    <div className='p-4 bg-gray-100'>
       <Typography variant='h2' className='mb-4'>Activités</Typography>
-      <div className='flex flex-col gap-4 px-4'>
+      <div className='flex flex-col gap-4'>
         { activities.map((activity: IActivity) => {
           return <ActivityCard key={ activity.id } activity={ activity } />
         }) }
